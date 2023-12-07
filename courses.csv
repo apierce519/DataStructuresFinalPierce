@@ -1,0 +1,11 @@
+CourseId,Name,StudentsList
+BIO101,Introduction to Biology,25;26;27
+CHEM101,Chemistry Fundamentals,22;23;24
+CIS201,Data Structures and Structures,4
+CIS301,Database Management Systems,7;8;9;17;18;21;22;24
+CIS401,Software Engineering,10;12;20;21;22;30
+MAT101,Calculus I,13;14;15
+MAT201,Linear Algebra,16;18
+PHY101,Physics for Engineers,19;20;21
+Tst101,Testing the testability of Testing,3
+Git101,Repo Creation For Great Big Dummies,

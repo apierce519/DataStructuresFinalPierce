@@ -1,0 +1,69 @@
+﻿@model AddCourseViewModel
+@using DataStructuresFinalPierce.Repositories
+
+@inject StudentRepository _studentRepository
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Add Course";
+}
+
+<h2>Add Course</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+@using (Html.BeginForm("Add", "Course", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.CourseId, "Course ID:")
+        @Html.TextBoxFor(model => model.CourseId, new { @class = "form-control", placeholder = "Enter Course ID" })
+        @Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, "Course Name:")
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Enter Course Name" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StudentsList" class="control-label"></label>
+        <div>
+            @{
+                var allStudents = _studentRepository.GetAllStudents();
+                if (allStudents != null)
+                {
+                    foreach (var studentInfo in allStudents)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" name="StudentsList" value="@studentInfo.StudentId" @(Model.StudentsList?.Contains(studentInfo.StudentId) ?? false ? "checked" : "") class="form-check-input" />
+                            <label class="form-check-label">@studentInfo.FirstName @studentInfo.LastName</label>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No students found.</p>
+                }
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add Course</button>
+    </div>
+}
+
+<a href="@Url.Action("AllCourses", "Course")">All Courses</a>

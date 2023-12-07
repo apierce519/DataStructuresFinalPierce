@@ -5,6 +5,11 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructuresFinalPierce", "DataStructuresFinalPierce.csproj", "{C4E6ADDE-E489-438A-888E-54E98B5E8767}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructuresFinalTesting", "..\DataStructuresFinalTesting\DataStructuresFinalTesting.csproj", "{9856F2DD-6E25-463E-94C5-3497C25E4509}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C4E6ADDE-E489-438A-888E-54E98B5E8767} = {C4E6ADDE-E489-438A-888E-54E98B5E8767}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{C4E6ADDE-E489-438A-888E-54E98B5E8767}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4E6ADDE-E489-438A-888E-54E98B5E8767}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4E6ADDE-E489-438A-888E-54E98B5E8767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9856F2DD-6E25-463E-94C5-3497C25E4509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9856F2DD-6E25-463E-94C5-3497C25E4509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9856F2DD-6E25-463E-94C5-3497C25E4509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9856F2DD-6E25-463E-94C5-3497C25E4509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,50 @@
+﻿@model Student
+@using DataStructuresFinalPierce.Repositories
+
+@inject StudentRepository _studentRepository
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Add Student";
+}
+
+<h2>Add Student</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+
+@using (Html.BeginForm("Add", "Student", FormMethod.Post))
+{
+    <div class="form-group">
+        <label asp-for="StudentId"></label>
+        <input asp-for="StudentId" class="form-control" readonly value="@_studentRepository.GetNextStudentId()" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Add Student</button>
+    </div>
+}
+
+<a href="@Url.Action("AllStudents", "Student")">All Students</a>

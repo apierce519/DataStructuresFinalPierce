@@ -1,0 +1,43 @@
+﻿@model DataStructuresFinalPierce.Models.CourseDetailViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Detail</title>
+</head>
+<body>
+
+    <h1>Course Detail</h1>
+
+    <dl>
+        <dt>Course ID:</dt>
+        <dd>@Model.CourseId</dd>
+
+        <dt>Name:</dt>
+        <dd>@Model.Name</dd>
+    </dl>
+
+    <h2>Student List</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.StudentListView)
+            {
+                <tr>
+                    <td>@student.StudentId</td>
+                    <td>@student.FirstName</td>
+                    <td>@student.LastName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>

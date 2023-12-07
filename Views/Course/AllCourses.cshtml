@@ -1,0 +1,44 @@
+﻿@model List<Course>
+
+@{
+    Layout = "_Layout"; // Specify the layout file here
+    @if (ViewBag.Title != null)
+    {
+        <p>Debug: Title - @ViewBag.Title</p>
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Name</th>
+                <th>Student Count</th>
+                <th>Actions</th> <!-- New column for Edit and Delete buttons -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(course.CourseId, "Detail", "Course", new { courseId = course.CourseId }, null)</td>
+                    <td>@course.Name</td>
+                    <td>@course.StudentList.Count</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Course", new { id = course.CourseId })">Edit</a>
+                        <a href="@Url.Action("Delete", "Course", new { id = course.CourseId })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No courses found.</p>
+}
+<a href="@Url.Action("Add", "Course")" class="btn btn-primary">Add Course</a>

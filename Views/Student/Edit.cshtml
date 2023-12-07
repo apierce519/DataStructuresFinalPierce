@@ -1,0 +1,32 @@
+﻿@model Student
+
+@{
+    Layout = "_Layout"; // Specify the layout file here
+    ViewBag.Title = "Edit Student";
+}
+
+<h2>Edit Student</h2>
+
+@using (Html.BeginForm("Edit", "Student", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="StudentId"></label>
+        <input asp-for="StudentId" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+<a href="@Url.Action("AllStudents", "Student")">All Students</a>

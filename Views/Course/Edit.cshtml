@@ -1,0 +1,54 @@
+﻿@model Course
+@using DataStructuresFinalPierce.Repositories
+
+@inject StudentRepository _studentRepository
+@{
+    Layout = "_Layout"; // Specify the layout file here
+    ViewBag.Title = "Edit Course";
+}
+
+<h2>Edit Course</h2>
+
+@using (Html.BeginForm("Edit", "Course", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        <label asp-for="CourseId" class="control-label"></label>
+        <input asp-for="CourseId" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StudentList" class="control-label"></label>
+        <div>
+            @{
+                var allStudents = _studentRepository.GetAllStudents();
+                if (allStudents != null)
+                {
+                    foreach (var studentInfo in allStudents)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" name="StudentList" value="@studentInfo.StudentId" @(Model.StudentList?.Contains(studentInfo.StudentId) ?? false ? "checked" : "") class="form-check-input" />
+                            <label class="form-check-label">@studentInfo.FirstName @studentInfo.LastName</label>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No students found.</p>
+                }
+            }
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+<a href="@Url.Action("AllCourses", "Course")">All Courses</a>

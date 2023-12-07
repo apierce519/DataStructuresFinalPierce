@@ -1,0 +1,44 @@
+﻿@model List<Student>
+
+@{
+    Layout = "_Layout"; // Specify the layout file here
+    @if (ViewBag.Title != null)
+    {
+        <p>Debug: Title - @ViewBag.Title</p>
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Actions</th> <!-- New column for Edit and Delete buttons -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.StudentId</td>
+                    <td>@student.FirstName</td>
+                    <td>@student.LastName</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Student", new { id = student.StudentId })">Edit</a>
+                        <a href="@Url.Action("Delete", "Student", new { id = student.StudentId })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No students found.</p>
+}
+<a href="@Url.Action("Add", "Student")" class="btn btn-primary">Add Student</a>
